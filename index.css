@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #c9c19d; /* Background color */
+    overflow-x: hidden;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+}
+.content {
+    width: 50%;
+    position: relative; /* Needed to position the strawberry image */
+    padding: 30px 50px; /* Reduced padding to move content up */
+    text-align: left;
+    color: white; /* Ensure text is visible */
+}
+.content h1 {
+    font-size: 6rem;
+    color: #fff;
+    line-height: 1.2;
+    font-family: cursive;
+    padding-left: 100px;
+    transform: scale(0.8);
+    opacity: 0;
+    animation: zoomIn 1s forwards ease-in-out;
+    margin-top: -50px; /* Adjust this to move the heading up */
+}
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.content p {
+    font-size: 1rem;
+    color:#fff;
+    margin: 20px 0;
+    line-height: 1.5;
+    padding-left: 100px;
+    background: transparent;
+    opacity: 0;
+    animation: fadeIn 2s forwards ease-in-out; /* Fade in for paragraph */
+    animation-delay: 1s; /* Add delay so text appears after heading */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #FF6B6B;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-left: 100px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #e85c5c;
+}
+
+.images {
+    position: relative;
+    width: 50%;
+    text-align: center;
+    margin-left: -50px; /* Shift the image to the left */
+}
+
+.images img {
+    width: 100%;
+    max-width: 600px;
+    display: inline-block;
+    margin-left: -120px; /* Moves the image slightly to the left */
+    opacity: 0;
+    animation: fadeInImage 1s forwards ease-in-out; /* Fade in for images */
+}
+
+@keyframes fadeInImage {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.strawberry {
+    position: absolute; /* Ensure it's positioned relative to the container */
+    bottom: -180px;
+    left: -30px; /* Move the image further to the left */
+    width: 280px;
+    background-color: transparent;
+    animation: strawberryUp 1s forwards ease-in-out; /* Animation for strawberry from below */
+}
+
+@keyframes strawberryUp {
+    0% {
+        transform: translateY(100px); /* Start from below */
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0); /* End at final position */
+        opacity: 1;
+    }
+}
+
+.images .background {
+    position: absolute;
+    top: -50px;
+    right: -80px;
+    width: 250px;
+    opacity: 0;
+    animation: fadeInImage 1s forwards ease-in-out; /* Fade in for background image */
+}
+
+.images .background2 { 
+    position: absolute;
+    top: 2px; /* Keep it at the upper position */
+    right: -10px; /* Decrease the value to move the image slightly left */
+    width: 180px; /* Adjust the size if necessary */
+    opacity: 0;
+    animation: fadeInImage 1s forwards ease-in-out; /* Fade in for background2 */
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    font-size: 1.2rem;
+    background-color: transparent; /* Make sure the background remains transparent */
+}
+nav ul {
+    display: flex;
+    list-style: none;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: white; /* Default text color is white */
+    font-weight: bold;
+}
+nav ul li a:hover {
+    color: #FF6B6B;
+}
+/* Active link color */
+nav ul li a.active {
+    color: black; /* Active page will have black text */
+}
+nav .logo {
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
+    font-family: cursive;
+}

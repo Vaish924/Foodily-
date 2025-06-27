@@ -1,0 +1,246 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page-container {
+    position: relative;
+    padding: 20px;
+    max-width:100%;
+    margin: 0 auto;
+}
+
+/* Top-left image */
+.corner-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+    z-index: 1;
+}
+
+/* Title Section */
+.title {
+    text-align: center;
+    margin: 50px 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Beverage Grid */
+.beverage-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 boxes in a row */
+    gap: 20px;
+    position: relative;
+    z-index: 2; /* Ensures grid is above corner image */
+    padding-left: 90px;
+    padding-right: 90px;
+}
+
+.beverage-box {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s ease;
+    height: 70vh;
+}
+
+.beverage-box:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.beverage-box img {
+    width: 100%;
+    height: 450px; /* Fixed height for uniformity */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.beverage-box h3 {
+    margin: 10px 0 5px;
+    font-size:1 rem;
+}
+
+.beverage-box p {
+    font-size: 1rem;
+    color: gray;
+}
+.frame {
+    width: 90%;
+    margin: 40px auto;
+    text-align: center;
+  }
+  button {
+    margin: 20px;
+  }
+  .custom-btn {
+    width: 150px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+  }
+  .btn-6 {
+    background: rgb(247,150,192);
+  background: radial-gradient(circle, rgba(247,150,192,1) 0%, rgba(118,174,241,1) 100%);
+    line-height: 42px;
+    padding: 0;
+    border: none;
+  }
+  .btn-6 span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .btn-6:before,
+  .btn-6:after {
+    position: absolute;
+    content: "";
+    height: 0%;
+    width: 1px;
+   box-shadow:
+     -1px -1px 20px 0px rgba(255,255,255,1),
+     -4px -4px 5px 0px rgba(255,255,255,1),
+     7px 7px 20px 0px rgba(0,0,0,.4),
+     4px 4px 5px 0px rgba(0,0,0,.3);
+  }
+  .btn-6:before {
+    right: 0;
+    top: 0;
+    transition: all 500ms ease;
+  }
+  .btn-6:after {
+    left: 0;
+    bottom: 0;
+    transition: all 500ms ease;
+  }
+  .btn-6:hover{
+    background: transparent;
+    color: #76aef1;
+    box-shadow: none;
+  }
+  .btn-6:hover:before {
+    transition: all 500ms ease;
+    height: 100%;
+  }
+  .btn-6:hover:after {
+    transition: all 500ms ease;
+    height: 100%;
+  }
+  .btn-6 span:before,
+  .btn-6 span:after {
+    position: absolute;
+    content: "";
+    box-shadow:
+     -1px -1px 20px 0px rgba(255,255,255,1),
+     -4px -4px 5px 0px rgba(255,255,255,1),
+     7px 7px 20px 0px rgba(0,0,0,.4),
+     4px 4px 5px 0px rgba(0,0,0,.3);
+  }
+  .btn-6 span:before {
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: .5px;
+    transition: all 500ms ease;
+  }
+  .btn-6 span:after {
+    right: 0;
+    bottom: 0;
+    width: 0%;
+    height: .5px;
+    transition: all 500ms ease;
+  }
+  .btn-6 span:hover:before {
+    width: 100%;
+  }
+  .btn-6 span:hover:after {
+    width: 100%;
+  }
+
+.line-image-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.line-image {
+    width: 100%;
+    height: auto;
+}
+
+#deals-page {
+    background-image: url('bac2constant.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Keeps the image fixed in place */
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  #deals-page .content {
+    position: relative;
+    z-index: 2;
+    min-height: 200vh; /* Ensures scrolling */
+  }
+  
+  #deals-page .circle {
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for better readability */
+    border-radius: 50%;
+    width: 600px; /* Increased width */
+    height: 600px; /* Increased height */
+    margin: 100px auto;
+    margin-top: 50px;
+    text-align: center;
+    padding: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Centers content horizontally */
+  }
+  
+  #deals-page .circle h2, 
+  #deals-page .circle h1, 
+  #deals-page .circle p {
+    margin: 10px 0;
+    line-height: 1.5; /* Adds spacing between lines */
+  }
+  
+  #deals-page .circle form {
+    margin-top: 20px;
+  }
+  
+  #deals-page .circle input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 70%;
+  }
+  
+  #deals-page .circle button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+

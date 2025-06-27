@@ -1,0 +1,116 @@
+<div id="juices-display" style="margin-top: 20px;"></div>
+<div id="view-more-container" style="text-align: center; margin-top: 20px;">
+  <button id="view-more" style="display: none;">View More</button>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const season = urlParams.get("season");
+
+    const seasonKeywords = {
+      summer: [
+        "lemon", "watermelon", "mango", "pineapple", "coconut", "strawberry",
+        "mojito", "smoothie", "milkshake", "iced coffee", "frapp"
+      ],
+      winter: [
+        "carrot", "orange", "apple", "pomegranate", "cinnamon", "honey",
+        "latte", "milkshake", "boba", "chai"
+      ],
+      monsoon: [
+        "ginger", "tulsi", "herbal", "mint", "spice", "chai",
+        "boba", "smoothie", "milkshake", "mojito"
+      ]
+    };
+
+    const baseURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+    const juiceDisplay = document.getElementById("juices-display");
+    const viewMoreBtn = document.getElementById("view-more");
+    let allJuices = [];
+    let displayedJuices = 0;
+
+    const keywords = seasonKeywords[season];
+    juiceDisplay.innerHTML = `<p>Loading ${season} juices...</p>`;
+
+    const fetchPromises = keywords.map((keyword) =>
+      fetch(`${baseURL}${keyword}`).then((response) => response.json())
+    );
+
+    Promise.all(fetchPromises)
+      .then((results) => {
+        allJuices = results.flatMap((result) => result.drinks || []);
+        if (allJuices.length === 0) {
+          juiceDisplay.innerHTML = `<p>No juices found for ${season}.</p>`;
+          return;
+        }
+
+        // Show the first 8 juices
+        renderJuices(allJuices.slice(0, 8));
+        displayedJuices = 8;
+
+        // Display "View More" button if there are more than 8 juices
+        if (allJuices.length > 8) {
+          viewMoreBtn.style.display = "inline-block";
+        }
+
+        viewMoreBtn.addEventListener("click", () => {
+          renderJuices(allJuices.slice(displayedJuices));
+          displayedJuices = allJuices.length;
+          viewMoreBtn.style.display = "none";
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching juices:", error);
+        juiceDisplay.innerHTML = `<p>Error fetching juices for ${season}. Please try again later.</p>`;
+      });
+
+    function renderJuices(juices) {
+      juiceDisplay.innerHTML += juices
+        .map((juice) => {
+          return `
+            <div class="juice-card">
+              <img src="${juice.strDrinkThumb}" alt="${juice.strDrink}">
+              <h4>${juice.strDrink}</h4>
+              <p><strong>Glass:</strong> ${juice.strGlass || "N/A"}</p>
+              <button onclick="showDetails('${juice.idDrink}')">View Recipe</button>
+            </div>
+          `;
+        })
+        .join("");
+    }
+  });
+
+  function showDetails(juiceId) {
+    const baseURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
+    fetch(`${baseURL}${juiceId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const juice = data.drinks[0];
+        const juiceDisplay = document.getElementById("juices-display");
+        juiceDisplay.innerHTML = `
+          <h2>${juice.strDrink}</h2>
+          <img src="${juice.strDrinkThumb}" alt="${juice.strDrink}" style="width: 200px; height: 200px;">
+          <p><strong>Category:</strong> ${juice.strCategory || "N/A"}</p>
+          <p><strong>Glass:</strong> ${juice.strGlass || "N/A"}</p>
+          <p><strong>Instructions:</strong> ${juice.strInstructions}</p>
+          <p><strong>Ingredients:</strong></p>
+          <ul>
+            ${Array.from({ length: 15 })
+              .map((_, i) => {
+                const ingredient = juice[`strIngredient${i + 1}`];
+                const measure = juice[`strMeasure${i + 1}`];
+                return ingredient
+                  ? `<li>${ingredient} - ${measure || "as needed"}</li>`
+                  : "";
+              })
+              .join("")}
+          </ul>
+          <button onclick="window.location.reload()">Back</button>
+        `;
+      })
+      .catch((error) => {
+        console.error("Error fetching juice details:", error);
+        alert("Failed to fetch juice details. Please try again later.");
+      });
+  }
+</script>
