@@ -395,10 +395,9 @@ textarea {
         <div class="logo">Foodily</div>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="new.html">About</a></li>
             <li><a href="menu.html">Menu</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
+            <li><a href="/blog">Blog</a></li>
             <li><a href="contact.html" class="active">Contact Us</a></li>
         </ul>
         <div class="icons">
@@ -456,37 +455,36 @@ textarea {
   <div class="footer-content">
       <div class="contact">
           <h3>Contact Us</h3>
-          <p>6 Fifth Avenue 5501, Broadway, New York Morris Street London 1234</p>
-          <p>Your mail @ gmail.com</p>
-          <p>(123) 4567 89000</p>
+          <p>A/P Bhivashi, Tal-Nippani, Dis-Belaguam,State-Karnataka</p>
+          <p>vaishnavipatil.9333@gmail.com</p>
+          <p>8088454300</p>
       </div>
       <div class="links">
           <h3>Useful Links</h3>
           <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Blogs</a></li>
-              <li><a href="#">Terms Of Service</a></li>
-              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="new.html">About Us</a></li>
+              <li><a href="/blog">Blogs</a></li>
           </ul>
       </div>
       <div class="social">
           <h3>Follow Us Now</h3>
           <ul>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">Dribbble</a></li>
+              <li><a href="https://www.linkedin.com/in/patilvaishnavi20">Linkedin</a></li>
+              <li><a href="https://www.instagram.com/vaishnavi.patil_21/">Instagram</a></li>
+              <li><a href="https://github.com/Vaish924">Github</a></li>
+
           </ul>
       </div>
      
   </div>
   <div class="footer-bottom">
-      <p>© 2021 Foodily All Rights Reserved.</p>
+      <p>© 2025 Foodily All Rights Reserved.</p>
   </div>
 </footer>
 
     
+          
 
     <script>
         // Shrink Navbar on Scroll
@@ -536,5 +534,71 @@ textarea {
       
 
     </script>
+
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { getDatabase, ref, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+
+// ✅ Your new Firebase project config
+const firebaseConfig = {
+  apiKey: "AIzaSyBcEehDGcoXInySgTSh3xaQYi4wxuVK1bU",
+  authDomain: "portfolionew-b6ee2.firebaseapp.com",
+  databaseURL: "https://portfolionew-b6ee2-default-rtdb.firebaseio.com",
+  projectId: "portfolionew-b6ee2",
+  storageBucket: "portfolionew-b6ee2.appspot.com",
+  messagingSenderId: "905378521969",
+  appId: "1:905378521969:web:af91108de91ffcdac70cd0",
+  measurementId: "G-TF8EFSVLGH"
+};
+
+// ✅ Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// ✅ Select form elements
+const sendBtn = document.querySelector(".send-btn");
+const nameInput = document.querySelector('input[placeholder="Your Name"]');
+const emailInput = document.querySelector('input[placeholder="Your Email"]');
+const commentInput = document.querySelector('textarea');
+
+sendBtn.addEventListener("click", async () => {
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const comment = commentInput.value.trim();
+
+  if (!name || !email || !comment) {
+    alert("❌ Please fill out all fields.");
+    return;
+  }
+
+  // Change button state
+  sendBtn.disabled = true;
+  sendBtn.innerHTML = `<span>&#8635;</span> Submitting…`;
+
+  try {
+    // ✅ Write to Realtime Database
+    await push(ref(db, "contactMessages"), {
+      name,
+      email,
+      comment,
+      timestamp: Date.now()
+    });
+
+    alert("✅ Thank you! Your message has been submitted.");
+    nameInput.value = "";
+    emailInput.value = "";
+    commentInput.value = "";
+
+  } catch (error) {
+    console.error("❌ Error writing to database: ", error);
+    alert("❌ Failed to submit. Please check console for details.");
+  } finally {
+    sendBtn.disabled = false;
+    sendBtn.innerHTML = `<span>&rarr;</span> Send`;
+  }
+});
+</script>
+
 </body>
 </html>
+

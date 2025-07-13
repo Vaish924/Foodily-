@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Blogs</title>
+<link rel="stylesheet" href="/css/blog.css">
+</head>
+<body>
+
+<div class="blog-banner">
+  <div class="banner-content">
+    <h1>Our <span>Blogs</span></h1>
+    <p>Home: Blog</p>
+  </div>
+  <img src="icon-3.png" class="fruit kiwi" alt="kiwi">
+  <img src="icon-2.png" class="fruit strawberry" alt="strawberry">
+</div>
+
+<div class="juice-container">
+  <div class="text-content">
+    <form action="/blog/add" method="POST" enctype="multipart/form-data" class="blog-form">
+      <h3>Write Your Blog</h3>
+
+      <input type="text" name="title" placeholder="Blog Title" required>
+      <textarea name="content" placeholder="Write your blog here..." required></textarea>
+
+      <input type="file" name="image" accept="image/*">
+      <small>(Only JPG, PNG, GIF. Max size: 2MB)</small>
+
+      <button type="submit">Post Blog</button>
+    </form>
+
+    <div class="blogs-list">
+      <% if (blogs.length === 0) { %>
+        <p>No blogs yet. Be the first to post!</p>
+      <% } else { %>
+        <% blogs.forEach(blog => { %>
+          <div class="blog-card">
+            <h3><%= blog.title %></h3>
+            <p><%= blog.content %></p>
+            <% if (blog.image) { %>
+              <img src="/uploads/<%= blog.image %>" alt="Blog image">
+            <% } %>
+            <small><%= blog.createdAt.toLocaleString() %></small>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

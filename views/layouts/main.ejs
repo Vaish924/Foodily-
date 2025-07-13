@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= locals.title %></title>
-
-    <link rel="stylesheets" href="/css/style.css">
-    <script type="text/javascript" defer src="/js/script.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= typeof title !== 'undefined' ? title : 'Juice Website' %></title>
+<link rel="stylesheet" href="/about.css">
 </head>
 <body>
-  <div class="container">
-    <%- include('../partials/header.ejs') %>
-    <main class="main">
-      
-    </main>
-    <%- include('../partials/footer.ejs') %>
-  </div>
+
+<%- body %>
+
 </body>
 </html>

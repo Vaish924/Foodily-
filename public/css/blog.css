@@ -1,0 +1,105 @@
+.blog-banner {
+  position: relative;
+   background: url('bac1.png') no-repeat center center/cover;
+  background: linear-gradient(135deg, #a8e063, #56ab2f);
+  padding: 60px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.blog-banner .banner-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.blog-banner .banner-content span {
+  color: #ff6666;
+}
+
+.blog-banner .banner-content p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #eee;
+}
+
+.blog-banner .fruit {
+  position: absolute;
+  width: 100px;
+  opacity: 0.8;
+}
+
+.blog-banner .kiwi {
+  top: 20px;
+  right: 30px;
+}
+
+.blog-banner .strawberry {
+  bottom: 20px;
+  left: 30px;
+}
+
+.blog-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+}
+
+.blog-form h3 {
+  margin-bottom: 15px;
+  color: #ff6666;
+}
+
+.blog-form input[type="text"],
+.blog-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.blog-form button {
+  background: #ff6666;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.blog-form button:hover {
+  background: #fff;
+  color: #ff6666;
+  border: 1px solid #ff6666;
+}
+
+.blogs-list .blog-card {
+  background: #fafafa;
+  border: 1px solid #eee;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blogs-list .blog-card h3 {
+  color: #333;
+}
+
+.blogs-list .blog-card p {
+  color: #555;
+}
+
+.blogs-list .blog-card img {
+  max-width: 200px;
+  margin-top: 10px;
+}
+
+.blogs-list .blog-card small {
+  color: #aaa;
+}
